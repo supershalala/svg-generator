@@ -10,7 +10,7 @@ const ShapeOptions = [
 
     "triangle",
 
-    "square",
+    "square"
 
  
 
@@ -98,6 +98,7 @@ const initalizeApp = () => {
 
     initalizeApp();
 
+    module.exports = { initalizeApp };
 
 
 
@@ -106,4 +107,4 @@ const initalizeApp = () => {
 
 
 
-    
+
