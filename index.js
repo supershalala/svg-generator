@@ -2,6 +2,8 @@ const inquirer = require("inquirer");
 
 const fs = require("fs");
 
+const shapes = require("./lib/shapes.js")
+
 const ShapeOptions = [
 
     "circle",
@@ -36,7 +38,7 @@ const initalizeApp = () => {
 
             type: 'input',
             name: 'textColor',
-            message: 'Enter text color either a keyword or hex';
+            message: 'Enter text color either a keyword or hex'
         },
 
         {
@@ -53,11 +55,11 @@ const initalizeApp = () => {
         {
             type: 'input',
             name: 'ShapeColor',
-            message: 'Enter text color either a keyword or hex';
+            message: 'Enter text color either a keyword or hex'
         },
 
 
-
+    
 
 
 
@@ -65,7 +67,14 @@ const initalizeApp = () => {
 
 
     ])
+    .then((answers) => {
+        console.log(answers);
+      });
 
+}
+
+
+    initalizeApp();
 
 
 
@@ -76,4 +85,3 @@ const initalizeApp = () => {
 
 
     
-}
