@@ -55,7 +55,7 @@ const initalizeApp = () => {
         {
             type: 'input',
             name: 'shapeColor',
-            message: 'Enter text color either a keyword or hex'
+            message: 'Enter shape color either a keyword or hex'
         },
 
 

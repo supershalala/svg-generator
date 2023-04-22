@@ -1,0 +1,10 @@
+
+
+        <svg width="300" height="200">
+        <g fill="green">
+        <polygon points="150,0 300,200 0,200" />
+        </g>
+        <text x="150" y="100" text-anchor="middle" fill="white" font-size="48">AJS</text>
+      </svg>
+            
+        
