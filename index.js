@@ -23,7 +23,7 @@ const initalizeApp = () => {
 
         {
             type: 'input',
-            name: 'input',
+            name: 'text',
             message: 'Enter your text (MAX 3 Characters)',
             validate: function(input) {
               if (input.length !== 3) {
@@ -54,7 +54,7 @@ const initalizeApp = () => {
 
         {
             type: 'input',
-            name: 'ShapeColor',
+            name: 'shapeColor',
             message: 'Enter text color either a keyword or hex'
         },
 
@@ -69,6 +69,28 @@ const initalizeApp = () => {
     ])
     .then((answers) => {
         console.log(answers);
+
+        const selectedShape = answers.shape === 'triangle' ? shapes.triangle:
+                  answers.shape === 'circle' ? shapes.circle : shapes.square;
+
+
+        const svg = `
+
+        <svg width="300" height="200">
+        <g fill="${answers.shapeColor}">
+        ${selectedShape}
+        </g>
+        <text x="150" y="100" text-anchor="middle" fill="${answers.textColor}" font-size="48">${answers.text}</text>
+      </svg>
+            
+        `
+
+        // Write the SVG markup to a file
+    fs.writeFile('shape.svg', svg, err => {
+        if (err) throw err;
+        console.log('SVG file saved!');
+      });
+
       });
 
 }
