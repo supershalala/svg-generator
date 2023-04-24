@@ -2,9 +2,14 @@ const inquirer = require("inquirer");
 
 const fs = require("fs");
 
-const shapes = require("./lib/shapes.js")
 
-const ShapeOptions = [
+const { Triangle, Circle, Square } = require("./lib/shapes");
+
+
+
+const initializeApp = () => {
+
+  const ShapeOptions = [
 
     "circle",
 
@@ -16,7 +21,6 @@ const ShapeOptions = [
 
 ]
 
-const initalizeApp = () => {
 
     inquirer
     .prompt ([
@@ -70,20 +74,30 @@ const initalizeApp = () => {
     .then((answers) => {
         console.log(answers);
 
-        const selectedShape = answers.shape === 'triangle' ? shapes.triangle:
-                  answers.shape === 'circle' ? shapes.circle : shapes.square;
 
 
-        const svg = `
+      let shape;
+      if (answers.shape === "triangle") {
+        shape = new Triangle();
+      } else if (answers.shape === "circle") {
+        shape = new Circle();
+      } else {
+        shape = new Square();
+      }
 
-        <svg width="300" height="200">
-        <g fill="${answers.shapeColor}">
-        ${selectedShape}
+      shape.setColor(answers.shapeColor);
+      const selectedShape = shape.render();
+
+      const svg = `
+      <svg width="300" height="200">
+        <g>
+          ${selectedShape}
         </g>
-        <text x="150" y="100" text-anchor="middle" fill="${answers.textColor}" font-size="48">${answers.text}</text>
+        <text x="150" y="100" text-anchor="middle" fill="${
+          answers.textColor
+        }" font-size="48">${answers.text}</text>
       </svg>
-            
-        `
+      `;
 
         // Write the SVG markup to a file
     fs.writeFile('shape.svg', svg, err => {
@@ -96,9 +110,9 @@ const initalizeApp = () => {
 }
 
 
-    initalizeApp();
+    initializeApp();
 
-    module.exports = { initalizeApp };
+    module.exports = { initializeApp };
 
 
 
